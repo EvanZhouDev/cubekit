@@ -2,7 +2,7 @@
 	"name": "cubekit",
 	"version": "1.0.0",
 	"description": "A Rubik's cube simulation API",
-	"main": "index.js",
+	"main": "cube3.js",
 	"devDependencies": {
 		"jest": "^28.1.3"
 	},
