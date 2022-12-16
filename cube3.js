@@ -330,63 +330,101 @@ class Cube {
 	};
 }
 
+export const Sledgehammer = [
+	{
+		name: "sledgehammer",
+		algorithm: "R' F R F'",
+	},
+	{
+		name: "inverseSledgehammer",
+		algorithm: "R F' R' F",
+	},
+];
+
 class Parser {
-	constructor(cube, ...algorithms) {
+	constructor(cube, ...algSets) {
 		this.cube = cube;
-		this.algorithms = algorithms;
+		this.defAlgs = {};
+		this.register(...algSets);
 	}
 
-	exec(algorithm) {
-		let algArr = algorithm.split(" ");
-		let allowedMoves = [
-			"R",
-			"L",
-			"U",
-			"D",
-			"B",
-			"F",
-			"r",
-			"l",
-			"u",
-			"d",
-			"b",
-			"f",
-			"x",
-			"y",
-			"z",
-		];
-		for (let i = 0; i < algArr.length; i++) {
-			let currentNotation = algArr[i];
-			let multiplier = currentNotation.includes("'") ? -1 : 1;
-			currentNotation = currentNotation.replace("'", "");
-			let wWide = currentNotation[1] == "w";
-			let lowerWide = false;
-			currentNotation = currentNotation.replace("w", "");
-			if (allowedMoves.includes(currentNotation[0])) {
-				// normal move
-				if (currentNotation[0] === currentNotation[0].toLowerCase()) {
-					lowerWide = true;
-					currentNotation =
-						currentNotation[0].toUpperCase() +
-						currentNotation.substr(1, currentNotation.length - 1);
-				}
-				let moveType = currentNotation[0];
-				if (lowerWide) {
-					currentNotation = currentNotation.slice(lowerWide);
+	run(algorithm) {
+		if (algorithm[0] !== "$") {
+			let algArr = algorithm.split(" ");
+			let allowedMoves = [
+				"R",
+				"L",
+				"U",
+				"D",
+				"B",
+				"F",
+				"r",
+				"l",
+				"u",
+				"d",
+				"b",
+				"f",
+				"x",
+				"y",
+				"z",
+			];
+			for (let i = 0; i < algArr.length; i++) {
+				let currentNotation = algArr[i];
+				let multiplier = currentNotation.includes("'") ? -1 : 1;
+				currentNotation = currentNotation.replace("'", "");
+				let wWide = currentNotation[1] == "w";
+				let lowerWide = false;
+				currentNotation = currentNotation.replace("w", "");
+				if (allowedMoves.includes(currentNotation[0])) {
+					// normal move
+					if (currentNotation[0] === currentNotation[0].toLowerCase()) {
+						lowerWide = true;
+						currentNotation =
+							currentNotation[0].toUpperCase() +
+							currentNotation.substr(1, currentNotation.length - 1);
+					}
+					let moveType = currentNotation[0];
+					if (lowerWide) {
+						currentNotation = currentNotation.slice(lowerWide);
+					} else {
+						currentNotation = currentNotation.slice(wWide + 1);
+					}
+					let parsedNum = Number.parseInt(currentNotation);
+					let turnMult = isNaN(parsedNum) ? 1 : parsedNum;
+					this.cube[moveType + (wWide || lowerWide ? "w" : "")](
+						multiplier * turnMult
+					);
 				} else {
-					currentNotation = currentNotation.slice(wWide + 1);
+					console.error("Cannot parse move " + currentNotation);
 				}
-				let parsedNum = Number.parseInt(currentNotation);
-				let turnMult = isNaN(parsedNum) ? 1 : parsedNum;
-				console.log(
-					moveType + (wWide || lowerWide ? "w" : ""),
-					multiplier * turnMult
-				);
-				this.cube[moveType + (wWide || lowerWide ? "w" : "")](
-					multiplier * turnMult
-				);
+			}
+		} else {
+			this.run(this.defAlgs[algorithm.substring(1, algorithm.length)]);
+		}
+	}
+
+	registerSet(...algSets) {
+		// console.log(algSets);
+		for (let i = 0; i < algSets.length; i++) {
+			let thisAlgset = algSets[i];
+			for (let j = 0; j < thisAlgset.length; j++) {
+				let thisAlg = thisAlgset[j];
+				if (this.defAlgs[thisAlg] !== undefined) {
+					console.info(thisAlg.name + " has already been registered.");
+				} else {
+					this.defAlgs[thisAlg.name] = thisAlg.algorithm;
+				}
+			}
+		}
+	}
+	register(...algList) {
+		// console.log(algSets);
+		for (let j = 0; j < algList.length; j++) {
+			let thisAlg = algList[j];
+			if (this.defAlgs[thisAlg] !== undefined) {
+				console.info(thisAlg.name + " has already been registered.");
 			} else {
-				console.error("Cannot parse move " + currentNotation);
+				this.defAlgs[thisAlg.name] = thisAlg.algorithm;
 			}
 		}
 	}
@@ -398,8 +436,17 @@ class Parser {
 
 let c = new Cube(StandardMoves);
 c.init();
-let parser = new Parser(c);
-parser.exec("L2 R2 U2 D2 F2 B2");
+
+// let parser = new Parser(c, TestAlgSet1);
+// parser.registerSet(TestAlgSet2);
+// parser.register({
+// 	name: "checker",
+// 	algorithm: "R2 L2 U2 D2 F2 B2",
+// });
+// parser.run("$checker");
+
+// parser.exec("L2 R2 U2 D2 F2 B2");
+
 console.log(c.flatten());
 
 // console.log(c);
@@ -421,7 +468,7 @@ U -1
 // console.log(c.f(-1));
 // console.log(c.Fw(-1));
 
-export { Cube, StandardMoves, WideMoves, WideMovesUNSAFE };
+export { Cube, Parser, StandardMoves, WideMoves, WideMovesUNSAFE };
 
 // console.log(c.isSolved());
 // console.log(c.flatten());
