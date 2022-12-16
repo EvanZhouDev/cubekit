@@ -14,7 +14,7 @@
 		"url": "git+https://github.com/EvanZhouDev/cubekit.git"
 	},
 	"author": "Evan Zhou",
-	"license": "MIT",
+	"license": "GNU AGPL",
 	"bugs": {
 		"url": "https://github.com/EvanZhouDev/cubekit/issues"
 	},
