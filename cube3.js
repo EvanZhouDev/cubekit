@@ -429,46 +429,6 @@ class Parser {
 		}
 	}
 }
-
-// Apply a transformation to pieces that fall under the given conditions
-
-// Extracted cube as a reusable object
-
-let c = new Cube(StandardMoves);
-c.init();
-
-// let parser = new Parser(c, TestAlgSet1);
-// parser.registerSet(TestAlgSet2);
-// parser.register({
-// 	name: "checker",
-// 	algorithm: "R2 L2 U2 D2 F2 B2",
-// });
-// parser.run("$checker");
-
-// parser.exec("L2 R2 U2 D2 F2 B2");
-
-console.log(c.flatten());
-
-// console.log(c);
-// c.Rw(2);
-// c.Rw(1);
-// console.log(c.pieces);
-/*
-R -1 wide
-U 2 
-R -2 
-U -1 
-*/
-
-// // Registers a moveset to be able to be used for a modular system
-// c.registerMoveset(WideMovesUNSAFE); // lowercase letters for wide moves
-// c.registerMoveset(WideMoves); // move + "w" for wide moves
-
-// Now we can use our moves!
-// console.log(c.f(-1));
-// console.log(c.Fw(-1));
-
-// export { Cube, Parser, StandardMoves, WideMoves, WideMovesUNSAFE };
 exports.WesternColors = WesternColors;
 exports.JapaneseColors = JapaneseColors;
 exports.Sledgehammer = Sledgehammer;
@@ -477,7 +437,3 @@ exports.Parser = Parser;
 exports.StandardMoves = StandardMoves;
 exports.WideMoves = WideMoves;
 exports.WideMovesUNSAFE = WideMovesUNSAFE;
-
-// console.log(c.isSolved());
-// console.log(c.flatten());
-// console.log(c.isSolved());

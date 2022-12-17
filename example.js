@@ -1,10 +1,18 @@
-import {
+// import {
+// 	Cube,
+// 	Parser,
+// 	StandardMoves,
+// 	JapaneseColors,
+// 	Sledgehammer,
+// } from "./cube3";
+
+let {
 	Cube,
-	Parser,
 	StandardMoves,
 	JapaneseColors,
+	Parser,
 	Sledgehammer,
-} from "./cube3";
+} = require("./cube3");
 
 let myCube = new Cube(StandardMoves); // Add a move set to the cube
 myCube.init(JapaneseColors); // Initialize the cube with a specific color scheme
