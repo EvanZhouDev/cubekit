@@ -20,7 +20,18 @@ As simple as that! Cubekit is ready to use!
 
 ## Usage
 
-Cubekit is centralized on simplicity and modularity. You can import everything you need and not bother with everythign else. There are two main classes: `Cube` and `Parser`
+Cubekit is centralized on simplicity and modularity. You can import everything you need and not bother with everything else. There are two main classes: `Cube` and `Parser`
+
+## Structure
+
+Cubekit is built on a vector and rotation-matrix model of a Rubik's Cube. This idea is originally from [user156217 on Stack Exchange](https://softwareengineering.stackexchange.com/a/262847https:/).
+
+Want to learn in detail how it works?
+
+<details>
+  <summary>Take the red pill.</summary>
+  
+</details>
 
 ### Cube
 
