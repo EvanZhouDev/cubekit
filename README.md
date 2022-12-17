@@ -30,7 +30,10 @@ Want to learn in detail how it works?
 
 <details>
   <summary>Take the red pill.</summary>
-  
+  The Cube class is composed of different pieces, each with a position vector. This vector is written as a row matrix, but for the sake of simplicity, we will write them as column matricies. $$\begin{bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{bmatrix}}$$
 </details>
 
 ### Cube
