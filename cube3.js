@@ -429,11 +429,14 @@ class Parser {
 		}
 	}
 }
-exports.WesternColors = WesternColors;
-exports.JapaneseColors = JapaneseColors;
-exports.Sledgehammer = Sledgehammer;
-exports.Cube = Cube;
-exports.Parser = Parser;
-exports.StandardMoves = StandardMoves;
-exports.WideMoves = WideMoves;
-exports.WideMovesUNSAFE = WideMovesUNSAFE;
+
+module.exports = {
+	WesternColors: WesternColors,
+	JapaneseColors: JapaneseColors,
+	Sledgehammer: Sledgehammer,
+	Cube: Cube,
+	Parser: Parser,
+	StandardMoves: StandardMoves,
+	WideMoves: WideMoves,
+	WideMovesUNSAFE: WideMovesUNSAFE,
+};
