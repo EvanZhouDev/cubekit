@@ -1,5 +1,5 @@
 {
-	"name": "cubekit",
+	"name": "@evanzhoudev/cubekit",
 	"version": "1.0.0",
 	"description": "A Rubik's cube simulation API",
 	"main": "cube3.js",
