@@ -186,13 +186,13 @@ const StandardMoves = {
 	},
 };
 
-export const WesternColors = {
+const WesternColors = {
 	x: ["O", "R"], // Negative x, positive x
 	y: ["Y", "W"], // Negative y, positive y
 	z: ["B", "G"], // Negative z, positive z
 };
 
-export const JapaneseColors = {
+const JapaneseColors = {
 	x: ["O", "R"], // Negative x, positive x
 	y: ["B", "W"], // Negative y, positive y
 	z: ["Y", "G"], // Negative z, positive z
@@ -330,7 +330,7 @@ class Cube {
 	};
 }
 
-export const Sledgehammer = [
+const Sledgehammer = [
 	{
 		name: "sledgehammer",
 		algorithm: "R' F R F'",
@@ -468,7 +468,15 @@ U -1
 // console.log(c.f(-1));
 // console.log(c.Fw(-1));
 
-export { Cube, Parser, StandardMoves, WideMoves, WideMovesUNSAFE };
+// export { Cube, Parser, StandardMoves, WideMoves, WideMovesUNSAFE };
+exports.WesternColors = WesternColors;
+exports.JapaneseColors = JapaneseColors;
+exports.Sledgehammer = Sledgehammer;
+exports.Cube = Cube;
+exports.Parser = Parser;
+exports.StandardMoves = StandardMoves;
+exports.WideMoves = WideMoves;
+exports.WideMovesUNSAFE = WideMovesUNSAFE;
 
 // console.log(c.isSolved());
 // console.log(c.flatten());
