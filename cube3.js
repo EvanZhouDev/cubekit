@@ -7,7 +7,7 @@ let mMult = (A, B) =>
 	);
 
 // Simple function to perform matrix transposition
-let mTrans = (m) => m[0].map((x, i) => m.map((x) => x[i]));
+let mTrans = (m) => m[0].map((_x, i) => m.map((x) => x[i]));
 
 let newSquare2d = (n) => Array.from(Array(n), () => new Array(n));
 
